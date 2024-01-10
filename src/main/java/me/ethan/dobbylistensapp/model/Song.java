@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "songs")
@@ -14,9 +15,9 @@ import org.hibernate.annotations.GenericGenerator;
 public class Song {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "song_id")
-    private Long songId;
+    @Column(name = "song_id")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID songId;
 
     private String name;
 

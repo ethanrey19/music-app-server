@@ -1,15 +1,27 @@
 package me.ethan.dobbylistensapp.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "playlists")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Playlist {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "playlist_id")
-    private Long playlistId;
+    @Column(name = "playlist_id")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID playlistId;
+
+    // gonna have to play around with this later
+    @OneToMany()
+    private List<Song> songList;
 
 }
